@@ -1,9 +1,12 @@
-from tkinter import Label, StringVar
+from tkinter import Label
+from tkinter import StringVar
 from tkinter import Button
 from tkinter import Entry
 from tkinter import Frame
 from tkinter import ttk
-from tkinter import CENTER, NO, Scrollbar, Canvas, YES, BOTH
+from tkinter import CENTER
+from tkinter import NO
+from tkinter import Scrollbar
 from modelo import Crud
 
 

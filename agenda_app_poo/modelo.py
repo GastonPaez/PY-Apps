@@ -1,6 +1,5 @@
 import sqlite3
 from tkinter import messagebox
-from tkinter import ttk
 import re
 
 
@@ -8,12 +7,13 @@ class Crud:
     def __init__(self):
         pass
 
-# Funcion para crear conexion base de datos y cursor
+    # Funcion para crear conexion base de datos y cursor
+
     def crear_tabla(self):
         try:
             con = sqlite3.connect("db_agendaapp.db")
             cur = con.cursor()
-            cur.execute("""CREATE TABLE IF NOT EXISTS datoscontactos (
+            cur.execute("""CREATE TABLE datoscontactos (
         id        INTEGER PRIMARY KEY
                         NOT NULL,
         nombre    VARCHAR NOT NULL,
@@ -24,14 +24,14 @@ class Crud:
     )"""
                         )
             con.commit()
-            print("La tabla se creo")
-            con.close()
-        except:
-            print("Fallo")
             con.close()
 
-        # Actualiza  los datos de la BBDD al Treeview
-        self.refresh()
+        except:
+            con.close()
+
+        finally:
+            # Actualiza  los datos de la BBDD al Treeview
+            self.refresh()
 
     def guardar(self, nm, ln, nb, ad, ml):
         nombre_get = nm
@@ -154,52 +154,67 @@ class Crud:
         # Coneccion a la base de datos creada
         con = sqlite3.connect("db_agendaapp.db")
         cur = con.cursor()
-        # Traer los datos de la tablaS
-        cur.execute(
-            f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`nombre` LIKE '{val_get}%' """)
-        # Lista de todos los registros de la tabla
-        self.busqueda_select = cur.fetchall()
+        try:
+            # Traer los datos de la tablaS
+            cur.execute(
+                f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`nombre` LIKE '{val_get}%' """)
+            # Lista de todos los registros de la tabla
+            self.busqueda_select = cur.fetchall()
+        except:
+            print("Se produjo un error al buscar nombre")
 
     def buscar_apellido(self, val_buscar):
         val_get = val_buscar
         # Coneccion a la base de datos creada
         con = sqlite3.connect("db_agendaapp.db")
         cur = con.cursor()
-        # Traer los datos de la tablaS
-        cur.execute(
-            f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`apellido` LIKE '{val_get}%' """)
-        # Lista de todos los registros de la tabla
-        self.busqueda_select = cur.fetchall()
+        try:
+            # Traer los datos de la tablaS
+            cur.execute(
+                f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`apellido` LIKE '{val_get}%' """)
+            # Lista de todos los registros de la tabla
+            self.busqueda_select = cur.fetchall()
+        except:
+            print("Se produjo un error al buscar apellido")
 
     def buscar_direccion(self, val_buscar):
         val_get = val_buscar
         # Coneccion a la base de datos creada
         con = sqlite3.connect("db_agendaapp.db")
         cur = con.cursor()
-        # Traer los datos de la tablaS
-        cur.execute(
-            f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`direccion` LIKE '{val_get}%' """)
-        # Lista de todos los registros de la tabla
-        self.busqueda_select = cur.fetchall()
+        try:
+            # Traer los datos de la tablaS
+            cur.execute(
+                f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`direccion` LIKE '{val_get}%' """)
+            # Lista de todos los registros de la tabla
+            self.busqueda_select = cur.fetchall()
+        except:
+            print("Se produjo un error al buscar direccion")
 
     def buscar_numero(self, val_buscar):
         val_get = val_buscar
         # Coneccion a la base de datos creada
         con = sqlite3.connect("db_agendaapp.db")
         cur = con.cursor()
-        # Traer los datos de la tablaS
-        cur.execute(
-            f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`numero` LIKE '%{val_get}%' """)
-        # Lista de todos los registros de la tabla
-        self.busqueda_select = cur.fetchall()
+        try:
+            # Traer los datos de la tablaS
+            cur.execute(
+                f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`numero` LIKE '%{val_get}%' """)
+            # Lista de todos los registros de la tabla
+            self.busqueda_select = cur.fetchall()
+        except:
+            print("Se produjo un error al buscar numero")
 
     def buscar_mail(self, val_buscar):
         val_get = val_buscar
         # Coneccion a la base de datos creada
         con = sqlite3.connect("db_agendaapp.db")
         cur = con.cursor()
-        # Traer los datos de la tablaS
-        cur.execute(
-            f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`email` LIKE '{val_get}%' """)
-        # Lista de todos los registros de la tabla
-        self.busqueda_select = cur.fetchall()
+        try:
+            # Traer los datos de la tablaS
+            cur.execute(
+                f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`email` LIKE '{val_get}%' """)
+            # Lista de todos los registros de la tabla
+            self.busqueda_select = cur.fetchall()
+        except:
+            print("Se produjo un error al buscar mail")
