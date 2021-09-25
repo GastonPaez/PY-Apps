@@ -148,3 +148,58 @@ class Crud:
                     messagebox.showerror("Agenda de Contactos",
                                          "El contacto no pudo ser modificado.")
             self.refresh()
+
+    def buscar_nombre(self, val_buscar):
+        val_get = val_buscar
+        # Coneccion a la base de datos creada
+        con = sqlite3.connect("db_agendaapp.db")
+        cur = con.cursor()
+        # Traer los datos de la tablaS
+        cur.execute(
+            f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`nombre` LIKE '{val_get}%' """)
+        # Lista de todos los registros de la tabla
+        self.busqueda_select = cur.fetchall()
+
+    def buscar_apellido(self, val_buscar):
+        val_get = val_buscar
+        # Coneccion a la base de datos creada
+        con = sqlite3.connect("db_agendaapp.db")
+        cur = con.cursor()
+        # Traer los datos de la tablaS
+        cur.execute(
+            f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`apellido` LIKE '{val_get}%' """)
+        # Lista de todos los registros de la tabla
+        self.busqueda_select = cur.fetchall()
+
+    def buscar_direccion(self, val_buscar):
+        val_get = val_buscar
+        # Coneccion a la base de datos creada
+        con = sqlite3.connect("db_agendaapp.db")
+        cur = con.cursor()
+        # Traer los datos de la tablaS
+        cur.execute(
+            f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`direccion` LIKE '{val_get}%' """)
+        # Lista de todos los registros de la tabla
+        self.busqueda_select = cur.fetchall()
+
+    def buscar_numero(self, val_buscar):
+        val_get = val_buscar
+        # Coneccion a la base de datos creada
+        con = sqlite3.connect("db_agendaapp.db")
+        cur = con.cursor()
+        # Traer los datos de la tablaS
+        cur.execute(
+            f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`numero` LIKE '%{val_get}%' """)
+        # Lista de todos los registros de la tabla
+        self.busqueda_select = cur.fetchall()
+
+    def buscar_mail(self, val_buscar):
+        val_get = val_buscar
+        # Coneccion a la base de datos creada
+        con = sqlite3.connect("db_agendaapp.db")
+        cur = con.cursor()
+        # Traer los datos de la tablaS
+        cur.execute(
+            f"""SELECT * FROM `datoscontactos` WHERE `datoscontactos`.`email` LIKE '{val_get}%' """)
+        # Lista de todos los registros de la tabla
+        self.busqueda_select = cur.fetchall()
